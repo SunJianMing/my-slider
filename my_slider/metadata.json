@@ -1,0 +1,187 @@
+{
+  "src/lib/components/MySlider.react.js": {
+    "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `value`\nwhich is editable by the user.",
+    "displayName": "MySlider",
+    "methods": [
+      {
+        "name": "computeTime",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "obj",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "setSubscript",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "setStatrTime",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "silderDrag",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "obj",
+            "type": null
+          },
+          {
+            "name": "flag",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "changeStartTime",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "updateRender",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "picUrl": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The picUrl displayed in the string.\n\u603b\u9884\u89c8\u56fe\u8def\u5f84"
+      },
+      "step": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "\u9884\u89c8\u56fe\u603b\u65f6\u95f4\uff0861.17\uff09"
+      },
+      "value": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            },
+            {
+              "name": "object"
+            },
+            {
+              "name": "array"
+            }
+          ]
+        },
+        "required": false,
+        "description": "The value displayed in the input.\n\u8fd4\u56de\u5f00\u59cb\u65f6\u95f4\u548c\u7ed3\u675f\u65f6\u95f4 {value:{imgStartTime,imgEndTime}}"
+      },
+      "range": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "object"
+            }
+          ]
+        },
+        "required": false,
+        "description": "\u8fd4\u56de\u8303\u56f4\u6570\u636e\u7684\u8303\u56f4(\u56fe\u7247\u53ef\u89c6\u533a\u65f6\u95f4\u6bb5)"
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": ""
+      },
+      "width": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "\u53ef\u89c6\u533a\u5bbd\u5ea6\u9ed8\u8ba410\u5206\u949f",
+        "defaultValue": {
+          "value": "10",
+          "computed": false
+        }
+      },
+      "setTimeShow": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "\u9009\u62e9\u5f00\u59cb\u65f6\u95f4\u6846\u662f\u5426\u663e\u793a",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "typeSite": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "\u8ba1\u7b97\u6a21\u5f0f\u65f6\u95f4\u6a21\u5f0f\uff0ctrue\u4e3a\u5e95\u90e8\u56fe\u7247\u4e3a\u6839\u636e\uff0cfalse\u4e3amark\u5757\u4e3a\u4f9d\u636e",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "height": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "\u56fe\u7247\u9ad8\u5ea6",
+        "defaultValue": {
+          "value": "80",
+          "computed": false
+        }
+      }
+    }
+  }
+}

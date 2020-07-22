@@ -1,0 +1,29 @@
+.wrap{
+    width:100%;
+    overflow: hidden;
+    position: relative;
+    margin:0 auto;
+}
+.wrapImg{
+    position: relative;
+    top:0;
+}
+.img{
+    position: absolute;
+    top:0;
+   
+}
+.mark{
+    background-color: rgba(0,0,0,0.4);
+    position: absolute;
+    top: 0;
+    height: 80px;
+    
+}
+.buttom{
+    margin-top: 10px;
+    text-align: center;
+}
+.buttom input{
+    margin-right: 10px;
+}

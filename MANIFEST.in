@@ -1,0 +1,7 @@
+include my_slider/my_slider.min.js
+include my_slider/my_slider.min.js.map
+include my_slider/metadata.json
+include my_slider/package-info.json
+include README.md
+include LICENSE
+include package.json
