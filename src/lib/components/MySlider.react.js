@@ -26,7 +26,6 @@ export default class MySlider extends Component {
         };
     }
     componentDidMount() {
-
         this.setSubscript();
     }
 
@@ -35,7 +34,7 @@ export default class MySlider extends Component {
         let {setProps, typeSite} = this.props;
         let {stepInterval} = this.state
         let markTime = this.mark.current.offsetLeft / stepInterval;
-         
+
         //滑块开始时间
         let startTime = +markTime
         //滑块结束时间
@@ -86,25 +85,24 @@ export default class MySlider extends Component {
                 });
             }
             this.setState({
-                startTime:(imgStartTime+startTime).toFixed(2)
+                startTime: (imgStartTime + startTime).toFixed(2)
             })
-        }else{
+        } else {
             let wrapTime = Math.abs(this.wrapImg.current.offsetLeft)
             let markStart = this.mark.current.offsetLeft
-            let startTime1 = (wrapTime+markStart)/stepInterval
-            let endTime1 = (this.mark.current.offsetWidth + wrapTime +markStart)/stepInterval
+            let startTime1 = (wrapTime + markStart) / stepInterval
+            let endTime1 = (this.mark.current.offsetWidth + wrapTime + markStart) / stepInterval
 
             setProps({
-                value:{
-                    startTime:startTime1,
-                    endTime:endTime1
+                value: {
+                    startTime: startTime1,
+                    endTime: endTime1
                 }
             })
             this.setState({
-                startTime:(+startTime1).toFixed(2)
+                startTime: (+ startTime1).toFixed(2)
             })
         }
-        
 
     }
     //设置下标位置
@@ -113,6 +111,7 @@ export default class MySlider extends Component {
         let {flag} = this.state
         let self = this;
         let subscript = []
+
         this
             .img
             .current
@@ -132,6 +131,7 @@ export default class MySlider extends Component {
                     self.setState({flag: false})
                 }
             });
+
     }
     //设置初始化时间
     setStatrTime() {
@@ -149,7 +149,7 @@ export default class MySlider extends Component {
             this.setState({
                 wrapImgLeft: -wrapPosi + 'px',
                 markLeft: '0px'
-            },()=>{
+            }, () => {
                 this.computeTime()
             })
 
@@ -159,14 +159,14 @@ export default class MySlider extends Component {
             this.setState({
                 wrapImgLeft: -moveWidth + 'px',
                 markLeft: '0px'
-            },()=>{
+            }, () => {
                 this.computeTime()
             })
 
             if (RemainingTime < markMoveWidth) {
                 this.setState({
                     markLeft: RemainingTime + 'px'
-                },()=>{
+                }, () => {
                     this.computeTime()
                 })
 
@@ -174,13 +174,13 @@ export default class MySlider extends Component {
             } else {
                 this.setState({
                     markLeft: markMoveWidth + 'px'
-                },()=>{
+                }, () => {
                     this.computeTime()
                 })
 
             }
         }
-        
+
     }
     //滑块
     silderDrag(obj, flag) {
@@ -280,10 +280,10 @@ export default class MySlider extends Component {
                 obj.style.cursor = 'default';
                 self.setState({
                     markLeft: self.mark.current.offsetLeft + 'px',
-                    wrapImgLeft:self.wrapImg.current.offsetLeft+'px'
+                    wrapImgLeft: self.wrapImg.current.offsetLeft + 'px'
                 })
                 if (!flag) {
-                   
+
                     obj.onmousemove = objMove
                     if (obj.offsetWidth + obj.offsetLeft > wrapWidth) {
                         obj.style.width = wrapWidth - obj.offsetLeft + 'px';
@@ -305,9 +305,18 @@ export default class MySlider extends Component {
     updateRender() {
         this.setStatrTime()
     }
+    
     render() {
-        let {id, picUrl, width, setTimeShow,height} = this.props;
+        let {
+            id,
+            picUrl,
+            width,
+            setTimeShow,
+            height,
+            step
+        } = this.props;
         let {stepInterval, subscript, markLeft, wrapImgLeft, startTime} = this.state;
+        // console.log(subscript)
         if (typeof width === 'number') {
             width = width * stepInterval + 'px'
         }
@@ -322,12 +331,20 @@ export default class MySlider extends Component {
                         className="wrapImg"
                         style={{
                         left: wrapImgLeft,
-                        height:height+20+'px'
+                        height: height + 20 + 'px'
                     }}
                         ref={this.wrapImg}>
-                        <img ref={this.img} src={picUrl} style={{height:height+'px'}} className="img" alt=""/> {subscript.map((item) => (
+                        <img
+                            ref={this.img}
+                            src={picUrl}
+                            style={{
+                            height: height + 'px'
+                        }}
+                            className="img"
+                            alt=""/> 
+                            {subscript.map((item,index) => (
                             <div
-                                key={item}
+                                key={index}
                                 style={{
                                 position: 'absolute',
                                 left: stepInterval * item + 'px',
@@ -356,7 +373,7 @@ export default class MySlider extends Component {
                         className="mark"
                         style={{
                         width: stepInterval + 'px',
-                        height:height+'px',
+                        height: height + 'px',
                         left: markLeft
                     }}></i>
                 </div>
@@ -376,11 +393,21 @@ export default class MySlider extends Component {
             </div>
         );
     }
+    componentDidUpdate(prevProps){
+        if(prevProps.step != this.props.step){
+            this.setSubscript()
+            this.setState({
+                wrapImgLeft:0,
+                markLeft:0
+            })
+        }
+        
+    }
 }
 
 MySlider.defaultProps = {
     width: 10,
-    height:80,
+    height: 80,
     setTimeShow: true,
     typeSite: false
 };
@@ -429,5 +456,5 @@ MySlider.propTypes = {
     /**
      * 图片高度
      */
-     height:PropTypes.number
+    height: PropTypes.number
 };
