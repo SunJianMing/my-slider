@@ -40,7 +40,7 @@ class App extends Component {
                     setProps={this.setProps}
                     {...this.state}
                 />
-                <input type="button" value='button'  onClick={this.changeStep.bind(this)}/>
+                {/* <input type="button" value='button'  onClick={this.changeStep.bind(this)}/> */}
             </div>
         )
     }

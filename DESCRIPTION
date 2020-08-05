@@ -1,6 +1,6 @@
 Package: mySlider
 Title: Project Description
-Version: 1.0.4
+Version: 1.0.5
 Authors @R: as.person(c(mrsun <18273965210@163.com>))
 Description: Project Description
 Depends: R (>= 3.0.2)

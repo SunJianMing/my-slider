@@ -22,7 +22,9 @@ export default class MySlider extends Component {
             flag: true,
             startTime: 0,
             wrapImgLeft: 0,
-            markLeft: 0
+            markLeft: 0,
+            startDataSite:0,
+            buttonType:''
         };
     }
     componentDidMount() {
@@ -134,17 +136,26 @@ export default class MySlider extends Component {
 
     }
     //设置初始化时间
-    setStatrTime() {
+    setStatrTime(type) {
 
-        let {stepInterval, startTime} = this.state
-
+        let {stepInterval, startTime,startDataSite,buttonType} = this.state
+        
         let {current: wrapImg} = this.wrapImg
         let {current: mark} = this.mark
+        if(buttonType == 'startPoint'){
+           
+            startTime = startDataSite/300000
+            // this.setState({startTime})
+        }else if(buttonType == 'startTime'){
+           
+            startDataSite = 300000*startTime
+            this.setState({startDataSite})
+        }
         let moveWidth = wrapImg.dataset.width - wrapImg.offsetWidth
         let markMoveWidth = wrapImg.offsetWidth - mark.offsetWidth
         let wrapPosi = startTime * stepInterval
+       
         if (wrapPosi <= moveWidth) {
-
             // wrapImg.style.left = `-${wrapPosi}px`
             this.setState({
                 wrapImgLeft: -wrapPosi + 'px',
@@ -164,6 +175,7 @@ export default class MySlider extends Component {
             })
 
             if (RemainingTime < markMoveWidth) {
+               
                 this.setState({
                     markLeft: RemainingTime + 'px'
                 }, () => {
@@ -300,9 +312,14 @@ export default class MySlider extends Component {
         };
     }
     changeStartTime(e) {
-        this.setState({startTime: e.currentTarget.value})
+        this.setState({startTime: e.currentTarget.value,buttonType:'startTime'})
+    }
+    changeStartDataSite(e){
+        this.setState({startDataSite: e.currentTarget.value,buttonType:'startPoint'})
+
     }
     updateRender() {
+        
         this.setStatrTime()
     }
     
@@ -315,8 +332,7 @@ export default class MySlider extends Component {
             height,
             step
         } = this.props;
-        let {stepInterval, subscript, markLeft, wrapImgLeft, startTime} = this.state;
-        // console.log(subscript)
+        let {stepInterval, subscript, markLeft, wrapImgLeft, startTime,startDataSite} = this.state;
         if (typeof width === 'number') {
             width = width * stepInterval + 'px'
         }
@@ -385,11 +401,15 @@ export default class MySlider extends Component {
                         .changeStartTime
                         .bind(this)}/>
                     <button
-                        onClick={this
-                        .updateRender
-                        .bind(this)}>startTime</button>
+                        style={{marginRight:'20px'}}
+                        onClick={this.updateRender.bind(this)}>startTime</button>
+                    <input type="text" 
+                         value={startDataSite}
+                         onChange={this.changeStartDataSite.bind(this)}
+                         />
+                    <button onClick={this.updateRender.bind(this)}>startPoint</button>
                 </div>}
-
+                   
             </div>
         );
     }

@@ -26,7 +26,12 @@
         "name": "setStatrTime",
         "docblock": null,
         "modifiers": [],
-        "params": [],
+        "params": [
+          {
+            "name": "type",
+            "type": null
+          }
+        ],
         "returns": null
       },
       {
@@ -47,6 +52,18 @@
       },
       {
         "name": "changeStartTime",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "changeStartDataSite",
         "docblock": null,
         "modifiers": [],
         "params": [
