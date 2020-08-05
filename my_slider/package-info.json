@@ -1,6 +1,6 @@
 {
   "name": "my_slider",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Project Description",
   "main": "build/index.js",
   "scripts": {

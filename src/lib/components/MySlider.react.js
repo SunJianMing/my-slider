@@ -102,7 +102,8 @@ export default class MySlider extends Component {
                 }
             })
             this.setState({
-                startTime: (+ startTime1).toFixed(2)
+                startTime: (+ startTime1).toFixed(2),
+                startDataSite:Math.floor(300000*startTime1)
             })
         }
 
@@ -149,7 +150,7 @@ export default class MySlider extends Component {
         }else if(buttonType == 'startTime'){
            
             startDataSite = 300000*startTime
-            this.setState({startDataSite})
+            // this.setState({startDataSite})
         }
         let moveWidth = wrapImg.dataset.width - wrapImg.offsetWidth
         let markMoveWidth = wrapImg.offsetWidth - mark.offsetWidth
