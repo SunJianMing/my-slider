@@ -45,7 +45,6 @@ export default class MySlider extends Component {
         let imgStartTime = Math.abs(this.wrapImg.current.offsetLeft) / stepInterval
         //图片结束时间
         let imgEndTime = this.wrapImg.current.parentNode.offsetWidth / stepInterval + imgStartTime
-
         if (typeSite) {
             if (!obj) {
                 //初始化是图片和滑块所处位置
@@ -62,8 +61,10 @@ export default class MySlider extends Component {
                     }
                 })
             }
+           
             if (obj === this.wrapImg.current) {
                 // 图片滑动后的位置
+                console.log(obj,'ssss')
                 setProps({
                     range: {
                         imgStartTime,
@@ -94,7 +95,7 @@ export default class MySlider extends Component {
             let markStart = this.mark.current.offsetLeft
             let startTime1 = (wrapTime + markStart) / stepInterval
             let endTime1 = (this.mark.current.offsetWidth + wrapTime + markStart) / stepInterval
-
+           
             setProps({
                 value: {
                     startTime: startTime1,
@@ -201,7 +202,8 @@ export default class MySlider extends Component {
             type,
             disW,
             disX1,
-            disL;
+            disL,
+            keyCode;
         let wrapWidth = this.wrapImg.current.offsetWidth;
         let {stepInterval} = this.state;
         let self = this
@@ -219,10 +221,21 @@ export default class MySlider extends Component {
                 obj.style.cursor = 'default';
             }
         }
+        document.onkeydown = function(e){
+            // console.log(e.keyCode,e)
+            if(e.keyCode == 16){
+                keyCode = true
+            }
+        }
+        document.onkeyup = function(e){
+                keyCode = false
+                self.computeTime(obj)
+        }
         if (!flag) {
             obj.onmousemove = objMove
         }
         obj.onmousedown = function (ev) {
+           
             if (!flag) {
                 obj.onmousemove = null
                 if (ev.offsetX < 10) {
@@ -240,6 +253,7 @@ export default class MySlider extends Component {
             disX = ev.clientX - obj.offsetLeft;
 
             document.onmousemove = function move(ev) {
+               
                 if (type) {
                     let w = ev.clientX - disX1;
                     if (obj.offsetWidth > wrapWidth) {
@@ -289,12 +303,14 @@ export default class MySlider extends Component {
             document.onmouseup = function () {
                 document.onmousemove = null
                 document.onmouseup = null
+                
                 type = undefined;
                 obj.style.cursor = 'default';
                 self.setState({
                     markLeft: self.mark.current.offsetLeft + 'px',
                     wrapImgLeft: self.wrapImg.current.offsetLeft + 'px'
                 })
+                
                 if (!flag) {
 
                     obj.onmousemove = objMove
@@ -304,8 +320,10 @@ export default class MySlider extends Component {
                     }
 
                 }
-
-                self.computeTime(obj)
+                if(!keyCode){
+                    self.computeTime(obj)
+                }
+                
 
             };
             ev.preventDefault();
